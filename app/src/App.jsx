@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ColorPicker from './components/ColorPicker';
 import FieldConfigurator from './components/FieldConfigurator';
 import LivePreview from './components/LivePreview';
+import HtmlImporter from './components/HtmlImporter';
 import { generatePythonScript } from './utils/scriptGenerator';
 import { Code, Download, Database, Moon, Sun } from 'lucide-react';
 
@@ -137,6 +138,26 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
+  const handleHtmlImport = (parsed) => {
+    if (parsed.colors && Object.keys(parsed.colors).length > 0) {
+      setColors(prev => ({ ...prev, ...parsed.colors }));
+    }
+    if (parsed.fieldOrder.length > 0) {
+      setFieldOrder(parsed.fieldOrder);
+      setFieldAliases(parsed.fieldAliases);
+    }
+    if (parsed.urlFieldHints.length > 0) {
+      setUrlFieldHints(parsed.urlFieldHints);
+      setUrlButtonTexts(parsed.urlButtonTexts);
+    }
+    if (parsed.popupHeader) setPopupHeader(parsed.popupHeader);
+    if (parsed.popupAlign)  setPopupAlign(parsed.popupAlign);
+    if (parsed.popupFont)   setPopupFontFamily(parsed.popupFont);
+    // Auto-hide recognised system fields found in the imported list
+    const systemHidden = parsed.fieldOrder.filter(f => SYSTEM_FIELDS_TO_HIDE.includes(f));
+    setHideFields(systemHidden);
+  };
+
   const handleCopy = () => {
     const script = generatePythonScript({ portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader, popupAlign, popupFontFamily });
     navigator.clipboard.writeText(script);
@@ -240,6 +261,8 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        <HtmlImporter onImport={handleHtmlImport} />
 
         <div className="panel" style={{ padding: '24px' }}>
           <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Popup Settings</h3>
