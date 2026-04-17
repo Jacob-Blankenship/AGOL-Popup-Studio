@@ -1,23 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  --bg-color: #0b0f19;
-  --panel-bg: rgba(20, 25, 40, 0.6);
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #0284c7;
-  --danger: #ef4444;
-  --success: #10b981;
+  /* Elegant Light Mode / Blueprint Palette */
+  --bg-color: #f8fafc;        /* slate-50 */
+  --panel-bg: #ffffff;        /* Crisp White */
+  --panel-border: #e2e8f0;    /* slate-200 */
+  --panel-border-hover: #cbd5e1; /* slate-300 */
+  --text-primary: #0f172a;    /* slate-900 */
+  --text-secondary: #64748b;  /* slate-500 */
+  
+  --accent: #0284c7;          /* precise sky blue */
+  --accent-hover: #0369a1;    
+  --accent-light: #e0f2fe;    
+  --danger: #dc2626;          
+  --danger-light: #fee2e2;
+  --success: #059669;         
+  --success-light: #d1fae5;
+  
+  /* Refined Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(15, 23, 42, 1) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(12, 74, 110, 0.15) 0px, transparent 50%);
-  background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -27,20 +36,25 @@ body {
   box-sizing: border-box;
 }
 
-/* Glassmorphism Panel */
-.glass-panel {
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Polished Panel */
+.glass-panel, .panel {
   background: var(--panel-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--panel-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -48,12 +62,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #94a3b8;
 }
 
 /* Base button styles */
@@ -63,8 +77,9 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 13px;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
@@ -74,85 +89,114 @@ body {
 .btn-primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-outline {
-  background: transparent;
+  background: #fff;
   color: var(--text-primary);
   border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-color);
+  border-color: var(--panel-border-hover);
+}
+
+.btn-icon {
+  padding: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+
+.btn-icon:hover {
+  background: var(--bg-color);
+  color: var(--text-primary);
 }
 
 /* Inputs */
-input[type="text"], input[type="password"] {
-  background: rgba(0, 0, 0, 0.2);
+input[type="text"], input[type="password"], textarea {
+  background: #ffffff;
   border: 1px solid var(--panel-border);
   color: var(--text-primary);
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 6px;
   outline: none;
   font-family: inherit;
-  transition: border-color 0.2s;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
   width: 100%;
+  box-shadow: var(--shadow-sm);
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94a3b8;
 }
 
 /* Color input */
 input[type="color"] {
   -webkit-appearance: none;
-  border: none;
+  border: 1px solid var(--panel-border);
   width: 32px;
   height: 32px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   padding: 0;
   background: transparent;
+  overflow: hidden;
 }
 input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-  border: 1px solid var(--panel-border);
-  border-radius: 4px;
+  border: none;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Live Preview Map Background */
+/* Subtle Blueprint Grid */
 .preview-map-bg {
-  background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0,10 L20,10 M10,0 L10,20" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></svg>');
-  background-color: #050811;
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-color: #f1f5f9;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
 }
 
 /* App Layout Grid */
 .app-container {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 420px 1fr;
   height: 100vh;
-  gap: 20px;
-  padding: 20px;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 @media (max-width: 1024px) {
@@ -161,3 +205,4 @@ input[type="color"]::-webkit-color-swatch {
     height: auto;
   }
 }
+

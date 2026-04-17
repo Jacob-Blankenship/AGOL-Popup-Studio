@@ -6,19 +6,19 @@ import { generatePythonScript } from './utils/scriptGenerator';
 import { Code, Download, Database } from 'lucide-react';
 
 const DEFAULT_COLORS = {
-  header_bg: '#0A4757',
+  header_bg: '#0f172a',
   header_text: '#ffffff',
-  header_border: '#ffffff',
-  row_label_bg: '#00303C',
-  row_label_text: '#ffffff',
-  row_value_bg: '#0A4757',
-  row_value_text: '#ffffff',
-  table_border: '#ffffff',
-  table_outline: '#ffffff',
-  button_bg: '#00303C',
+  header_border: '#334155',
+  row_label_bg: '#f8fafc',
+  row_label_text: '#475569',
+  row_value_bg: '#ffffff',
+  row_value_text: '#0f172a',
+  table_border: '#e2e8f0',
+  table_outline: '#cbd5e1',
+  button_bg: '#0284c7',
   button_text: '#ffffff',
-  button_radius: '6px',
-  button_shadow: '0 2px 4px rgba(0,0,0,0.15)'
+  button_radius: '4px',
+  button_shadow: '0 1px 2px rgba(0,0,0,0.05)'
 };
 
 const DEFAULT_ORDER = [
@@ -141,14 +141,14 @@ export default function App() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', overflowY: 'auto', paddingRight: '4px' }}>
         
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
-          <h1 style={{ margin: 0, fontSize: '1.5rem', background: 'linear-gradient(to right, var(--accent), #e0f2fe)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <h1 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: 700, letterSpacing: '-0.02em' }}>
             AGOL Popup Studio
           </h1>
         </div>
 
         {/* Mode Selector */}
-        <div className="glass-panel" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Execution Mode</h3>
+        <div className="panel" style={{ padding: '24px' }}>
+          <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Execution Mode</h3>
           <div style={{ display: 'flex', gap: '20px', marginBottom: updateMode === 'single' ? '16px' : '0' }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', color: 'var(--text-primary)' }}>
               <input type="radio" value="single" checked={updateMode === 'single'} onChange={(e) => setUpdateMode(e.target.value)} />
@@ -174,8 +174,8 @@ export default function App() {
           )}
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>AGOL Config</h3>
+        <div className="panel" style={{ padding: '24px' }}>
+          <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>AGOL Config</h3>
           <div style={{ display: 'grid', gap: '12px' }}>
             <div style={{ display: 'grid', gap: '4px' }}>
               <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>AGOL URL</label>
@@ -207,8 +207,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Import Schema</h3>
+        <div className="panel" style={{ padding: '24px' }}>
+          <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Import Schema</h3>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '12px', marginTop: 0 }}>
             Pull fields straight from a Service URL to add them to your Master List.
           </p>
@@ -226,8 +226,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Popup Settings</h3>
+        <div className="panel" style={{ padding: '24px' }}>
+          <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Popup Settings</h3>
           <div style={{ display: 'grid', gap: '12px' }}>
             <label style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Header Title (Use {"{field_name}"} for attributes or type plain text)</label>
             <input 
@@ -251,7 +251,7 @@ export default function App() {
           bulkButtonText={bulkButtonText} setBulkButtonText={setBulkButtonText}
         />
 
-        <div className="glass-panel" style={{ padding: '20px', display: 'flex', gap: '12px', sticky: 'bottom' }}>
+        <div className="panel" style={{ padding: '24px', display: 'flex', gap: '12px', sticky: 'bottom' }}>
           <button className="btn btn-primary" onClick={handleDownload} style={{ flex: 1 }}>
             <Download size={18} /> Download Python
           </button>

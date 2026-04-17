@@ -12,9 +12,10 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
     transition,
     padding: '10px 14px',
     margin: '8px 0',
-    background: 'rgba(255, 255, 255, 0.03)',
+    background: '#ffffff',
     border: '1px solid var(--panel-border)',
     borderRadius: '8px',
+    boxShadow: 'var(--shadow-sm)',
     display: 'flex',
     alignItems: 'center',
     gap: '12px',
@@ -25,7 +26,7 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
 
   return (
     <div ref={setNodeRef} style={style}>
-      <button {...attributes} {...listeners} className="btn-outline" style={{ padding: '4px', border: 'none', cursor: 'grab' }}>
+      <button {...attributes} {...listeners} className="btn-icon" style={{ cursor: 'grab', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <GripVertical size={16} />
       </button>
       
@@ -43,8 +44,11 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
               color: 'inherit', 
               outline: 'none',
               fontFamily: 'inherit',
-              borderBottom: '1px dashed rgba(255,255,255,0.2)'
+              borderBottom: '1px dashed var(--panel-border)',
+              transition: 'border-color 0.2s'
             }}
+            onFocus={(e) => e.target.style.borderBottom = '1px solid var(--accent)'}
+            onBlur={(e) => e.target.style.borderBottom = '1px dashed var(--panel-border)'}
         />
       </div>
       
@@ -54,14 +58,14 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
           value={urlButtonText || 'View'} 
           onChange={(e) => updateUrlButtonText(id, e.target.value)} 
           placeholder="Button Text"
-          style={{ width: '80px', fontSize: '12px', padding: '4px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'inherit', borderRadius: '4px' }}
+          style={{ width: '80px', fontSize: '12px', padding: '6px 8px', background: '#f8fafc', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', borderRadius: '4px', outline: 'none' }}
         />
       )}
       
       <button 
         onClick={() => toggleUrl(id)} 
-        className="btn-outline" 
-        style={{ padding: '6px', borderColor: isUrlToken ? 'var(--accent)' : 'transparent', color: isUrlToken ? 'var(--accent)' : 'inherit' }}
+        className="btn-icon" 
+        style={{ color: isUrlToken ? 'var(--accent)' : 'inherit', background: isUrlToken ? 'var(--accent-light)' : 'transparent' }}
         title="Mark as URL Field (Button)"
       >
         <Link size={16} />
@@ -69,8 +73,7 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
       
       <button 
         onClick={() => toggleHidden(id)} 
-        className="btn-outline" 
-        style={{ padding: '6px', borderColor: 'transparent' }}
+        className="btn-icon"
         title="Toggle Visibility"
       >
         {isHidden ? <EyeOff size={16} color="var(--danger)" /> : <Eye size={16} color="var(--success)" />}
@@ -137,8 +140,8 @@ export default function FieldConfigurator({ updateMode, fieldOrder, setFieldOrde
 
   if (updateMode === 'bulk') {
     return (
-      <div className="glass-panel" style={{ padding: '20px' }}>
-        <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Bulk Configuration</h3>
+      <div className="panel" style={{ padding: '24px' }}>
+        <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Bulk Configuration</h3>
         <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px' }}>
           Define comma-separated lists of substrings. Any field name containing these strings will be globally hidden or treated as a URL link across all layers.
         </p>
@@ -178,8 +181,8 @@ export default function FieldConfigurator({ updateMode, fieldOrder, setFieldOrde
   }
 
   return (
-    <div className="glass-panel" style={{ padding: '20px' }}>
-      <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Field Configuration</h3>
+    <div className="panel" style={{ padding: '24px' }}>
+      <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Field Configuration</h3>
       <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px' }}>
         Drag to reorder master list. Hide/unhide fields. Mark URL fields to generate buttons.
       </p>

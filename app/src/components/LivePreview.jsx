@@ -1,13 +1,13 @@
 import React from 'react';
 
 const MOCK_DATA = {
-  project_name: 'Dewberry Project Alpha',
-  created_date: '04/16/2026',
-  source_url: 'https://example.com/report',
-  status: 'Active',
-  objectid: 9942,
-  contract_number: 'C-204-11',
-  data_download: 'https://example.com/download'
+  project_name: 'Metro Line Extension Phase II',
+  created_date: '04/17/2026',
+  source_url: 'https://transport.gov/projects/metro-ext',
+  status: 'In Progress - Awaiting Permitting',
+  objectid: 2841,
+  contract_number: 'CNT-2026-X81-B',
+  data_download: 'https://data.arcgis.com/download/metro-ext'
 };
 
 export default function LivePreview({ updateMode, colors, fieldOrder, hideFields, urlFieldHints, popupHeader = '{nickname}', fieldAliases = {}, urlButtonTexts = {}, bulkButtonText = 'View' }) {
@@ -21,10 +21,10 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
   });
 
   return (
-    <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-      <div style={{ padding: '20px', borderBottom: '1px solid var(--panel-border)' }}>
-        <h3 style={{ margin: 0, fontSize: '1.2rem' }}>Live Simulation</h3>
-        <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
+    <div className="panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <div style={{ padding: '24px', borderBottom: '1px solid var(--panel-border)', background: '#fff' }}>
+        <h3 style={{ margin: 0, fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Live Simulation</h3>
+        <p style={{ margin: '6px 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
           Real-time preview of the resulting ArcGIS map popup.
         </p>
       </div>
@@ -34,25 +34,25 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
         {/* Mock ArcGIS Window Bubble */}
         <div className="animate-fade-in" style={{
           width: '100%',
-          maxWidth: '360px',
+          maxWidth: '380px',
           background: '#fff',
-          borderRadius: '8px',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          borderRadius: '10px',
+          boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
           overflow: 'hidden',
-          fontFamily: 'Microsoft YaHei, sans-serif'
+          fontFamily: 'Inter, system-ui, sans-serif'
         }}>
           {/* Default Title that Python script injects */}
           <div style={{
             background: colors.header_bg,
             color: colors.header_text,
-            padding: '6px 10px',
-            fontSize: '18px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            border: `2px solid ${colors.header_border}`,
+            padding: '10px 14px',
+            fontSize: '16px',
+            fontWeight: 600,
+            letterSpacing: '-0.01em',
+            border: `1px solid ${colors.header_border}`,
             borderBottom: `2px solid ${colors.header_border}`,
-            borderRadius: '8px 8px 0 0',
-            textAlign: 'center'
+            borderRadius: '10px 10px 0 0',
+            textAlign: 'left'
           }}>
             {displayHeader}
           </div>
@@ -60,7 +60,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
           <table style={{
             width: '100%',
             borderCollapse: 'collapse',
-            border: `2px solid ${colors.table_outline}`,
+            border: `1px solid ${colors.table_outline}`,
             borderTop: 'none'
           }}>
             <tbody>
@@ -70,22 +70,23 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
                 return (
                   <tr key={field}>
                     <td style={{
-                      padding: '6px 8px',
+                      padding: '8px 12px',
                       width: '40%',
                       background: colors.row_label_bg,
                       borderBottom: `1px solid ${colors.table_border}`,
+                      borderRight: `1px solid ${colors.table_border}`,
                       fontWeight: 600,
                       color: colors.row_label_text,
-                      fontSize: '14px'
+                      fontSize: '13px'
                     }}>
                       {aliasTitle}
                     </td>
                     <td style={{
-                      padding: '6px 8px',
+                      padding: '8px 12px',
                       background: colors.row_value_bg,
                       borderBottom: `1px solid ${colors.table_border}`,
                       color: colors.row_value_text,
-                      fontSize: '14px'
+                      fontSize: '13px'
                     }}>
                       {isUrl ? (
                         <a href={MOCK_DATA[field] || '#'} target="_blank" rel="noreferrer" style={{
@@ -95,7 +96,9 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
                           color: colors.button_text,
                           textDecoration: 'none',
                           borderRadius: colors.button_radius,
-                          boxShadow: colors.button_shadow
+                          boxShadow: colors.button_shadow,
+                          fontSize: '12px',
+                          fontWeight: 500
                         }}>{updateMode === 'bulk' ? bulkButtonText : (urlButtonTexts[field] || 'View')}</a>
                       ) : (
                         MOCK_DATA[field] !== undefined ? MOCK_DATA[field] : `[Sample ${field}]`
@@ -106,7 +109,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
               })}
               {visibleFields.length === 0 && (
                 <tr>
-                  <td colSpan="2" style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
+                  <td colSpan="2" style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: '13px' }}>
                     All fields are hidden or no data available.
                   </td>
                 </tr>
