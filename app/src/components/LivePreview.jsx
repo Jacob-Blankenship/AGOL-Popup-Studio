@@ -10,7 +10,7 @@ const MOCK_DATA = {
   data_download: 'https://data.arcgis.com/download/metro-ext'
 };
 
-export default function LivePreview({ updateMode, colors, fieldOrder, hideFields, urlFieldHints, popupHeader = '{nickname}', fieldAliases = {}, urlButtonTexts = {}, bulkButtonText = 'View' }) {
+export default function LivePreview({ updateMode, colors, fieldOrder, hideFields, urlFieldHints, popupHeader = '{nickname}', fieldAliases = {}, urlButtonTexts = {}, bulkButtonText = 'View', popupAlign = 'center', popupFontFamily = 'Microsoft YaHei, sans-serif' }) {
   // Only use fields that are not hidden. We will show placeholders if MOCK_DATA misses them.
   const visibleFields = fieldOrder.filter(f => !hideFields.includes(f));
 
@@ -39,7 +39,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
           borderRadius: '10px',
           boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
           overflow: 'hidden',
-          fontFamily: 'Inter, system-ui, sans-serif'
+          fontFamily: popupFontFamily
         }}>
           {/* Default Title that Python script injects */}
           <div style={{
@@ -52,7 +52,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
             border: `1px solid ${colors.header_border}`,
             borderBottom: `2px solid ${colors.header_border}`,
             borderRadius: '10px 10px 0 0',
-            textAlign: 'left'
+            textAlign: popupAlign
           }}>
             {displayHeader}
           </div>

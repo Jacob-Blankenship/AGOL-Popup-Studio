@@ -58,6 +58,8 @@ export default function App() {
   const [urlButtonTexts, setUrlButtonTexts] = useState({});
   const [bulkButtonText, setBulkButtonText] = useState('View Link');
   const [popupHeader, setPopupHeader] = useState('{nickname}');
+  const [popupAlign, setPopupAlign] = useState('center');
+  const [popupFontFamily, setPopupFontFamily] = useState('Microsoft YaHei, sans-serif');
   
   const [updateMode, setUpdateMode] = useState('single');
   const [targetLayerTitle, setTargetLayerTitle] = useState('');
@@ -123,7 +125,7 @@ export default function App() {
   };
 
   const handleDownload = () => {
-    const script = generatePythonScript({ portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader });
+    const script = generatePythonScript({ portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader, popupAlign, popupFontFamily });
     const blob = new Blob([script], { type: 'text/python' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -136,7 +138,7 @@ export default function App() {
   };
 
   const handleCopy = () => {
-    const script = generatePythonScript({ portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader });
+    const script = generatePythonScript({ portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader, popupAlign, popupFontFamily });
     navigator.clipboard.writeText(script);
     alert('Copied to clipboard!');
   };
@@ -241,14 +243,45 @@ export default function App() {
 
         <div className="panel" style={{ padding: '24px' }}>
           <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Popup Settings</h3>
-          <div style={{ display: 'grid', gap: '12px' }}>
-            <label style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Header Title (Use {"{field_name}"} for attributes or type plain text)</label>
-            <input 
-              type="text" 
-              placeholder="{nickname}" 
-              value={popupHeader} 
-              onChange={e => setPopupHeader(e.target.value)} 
-            />
+          <div style={{ display: 'grid', gap: '16px' }}>
+            <div style={{ display: 'grid', gap: '4px' }}>
+              <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Header Title (Use {"{field_name}"} for attributes)</label>
+              <input 
+                type="text" 
+                placeholder="{nickname}" 
+                value={popupHeader} 
+                onChange={e => setPopupHeader(e.target.value)} 
+              />
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gap: '4px' }}>
+                <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Header Alignment</label>
+                <select 
+                  value={popupAlign} 
+                  onChange={e => setPopupAlign(e.target.value)}
+                  style={{ background: 'var(--input-bg)', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', padding: '10px 14px', borderRadius: '6px', outline: 'none' }}
+                >
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="right">Right</option>
+                </select>
+              </div>
+
+              <div style={{ display: 'grid', gap: '4px' }}>
+                <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Font Architecture</label>
+                <select 
+                  value={popupFontFamily} 
+                  onChange={e => setPopupFontFamily(e.target.value)}
+                  style={{ background: 'var(--input-bg)', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', padding: '10px 14px', borderRadius: '6px', outline: 'none' }}
+                >
+                  <option value="Microsoft YaHei, sans-serif">Microsoft YaHei (Default Arc)</option>
+                  <option value="Inter, system-ui, sans-serif">Inter (Modern Sans)</option>
+                  <option value="Arial, sans-serif">Arial</option>
+                  <option value="'Courier New', Courier, monospace">Courier New (Monospace)</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -285,6 +318,8 @@ export default function App() {
         urlButtonTexts={urlButtonTexts}
         bulkButtonText={bulkButtonText}
         popupHeader={popupHeader}
+        popupAlign={popupAlign}
+        popupFontFamily={popupFontFamily}
       />
     </div>
   );

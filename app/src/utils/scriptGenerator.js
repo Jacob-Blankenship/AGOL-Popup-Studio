@@ -152,10 +152,10 @@ def _build_expression_infos(fields: list):
 # ---- HTML BUILDER ----
 def _build_text_html(title_tpl: str, fields: list, date_exprs: dict, url_exprs: dict, vis_exprs: dict) -> str:
     header = (f"<div style=\\"background:{COLORS['header_bg']};color:{COLORS['header_text']};padding:6px 10px;font-size:18px;font-weight:700;"
-              f"text-transform:uppercase;font-family:Microsoft YaHei;border-radius:8px 8px 0 0;border:2px solid {COLORS['header_border']};"
-              f"border-bottom:2px solid {COLORS['header_border']};text-align:center\\">{_esc_html(title_tpl)}</div>")
+              f"text-transform:uppercase;font-family:{POPUP_FONT};border-radius:8px 8px 0 0;border:2px solid {COLORS['header_border']};"
+              f"border-bottom:2px solid {COLORS['header_border']};text-align:{POPUP_ALIGN}\\">{_esc_html(title_tpl)}</div>")
 
-    table_start = (f"<table style=\\"width:100%;border-collapse:collapse;border:2px solid {COLORS['table_outline']};border-top:none;font-family:Microsoft YaHei;\\"><tbody>")
+    table_start = (f"<table style=\\"width:100%;border-collapse:collapse;border:2px solid {COLORS['table_outline']};border-top:none;font-family:{POPUP_FONT};\\"><tbody>")
     
     rows = []
     for f in fields:
