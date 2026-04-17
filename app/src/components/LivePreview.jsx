@@ -22,7 +22,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
 
   return (
     <div className="panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-      <div style={{ padding: '24px', borderBottom: '1px solid var(--panel-border)', background: '#fff' }}>
+      <div style={{ padding: '24px', borderBottom: '1px solid var(--panel-border)', background: 'transparent' }}>
         <h3 style={{ margin: 0, fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Live Simulation</h3>
         <p style={{ margin: '6px 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
           Real-time preview of the resulting ArcGIS map popup.
@@ -35,7 +35,7 @@ export default function LivePreview({ updateMode, colors, fieldOrder, hideFields
         <div className="animate-fade-in" style={{
           width: '100%',
           maxWidth: '380px',
-          background: '#fff',
+          background: 'var(--panel-bg)',
           borderRadius: '10px',
           boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
           overflow: 'hidden',

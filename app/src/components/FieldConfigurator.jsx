@@ -12,7 +12,7 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
     transition,
     padding: '10px 14px',
     margin: '8px 0',
-    background: '#ffffff',
+    background: 'var(--panel-bg)',
     border: '1px solid var(--panel-border)',
     borderRadius: '8px',
     boxShadow: 'var(--shadow-sm)',
@@ -58,7 +58,7 @@ function SortableField({ id, alias, updateAlias, urlButtonText, updateUrlButtonT
           value={urlButtonText || 'View'} 
           onChange={(e) => updateUrlButtonText(id, e.target.value)} 
           placeholder="Button Text"
-          style={{ width: '80px', fontSize: '12px', padding: '6px 8px', background: '#f8fafc', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', borderRadius: '4px', outline: 'none' }}
+          style={{ width: '80px', fontSize: '12px', padding: '6px 8px', background: 'var(--input-bg)', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', borderRadius: '4px', outline: 'none' }}
         />
       )}
       
