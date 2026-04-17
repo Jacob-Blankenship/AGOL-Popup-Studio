@@ -1,5 +1,5 @@
 export function generatePythonScript(state) {
-  const { portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader } = state;
+  const { portalConfig, updateMode, targetLayerTitle, colors, hideFields, urlFieldHints, urlButtonTexts, bulkButtonText, fieldOrder, fieldAliases, popupHeader, popupAlign = 'center', popupFontFamily = 'Microsoft YaHei, sans-serif' } = state;
 
   const hideFieldsSet = `{"${hideFields.join('","')}"}`;
   const urlHintsTuple = `("${urlFieldHints.join('","')}")`;
@@ -47,6 +47,8 @@ URL_BUTTON_TEXTS = ${urlButtonTextsDictStr}
 BULK_BUTTON_TEXT = "${bulkButtonText}"
 UPDATE_MODE = "${updateMode}"
 TARGET_LAYER_TITLE = "${targetLayerTitle}"
+POPUP_ALIGN = "${popupAlign}"
+POPUP_FONT = "${popupFontFamily}"
 
 # ===== HELPERS =====
 def _iter_nested_layers(layer_obj, parent_url=None):

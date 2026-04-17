@@ -260,7 +260,6 @@ export default function App() {
                 <select 
                   value={popupAlign} 
                   onChange={e => setPopupAlign(e.target.value)}
-                  style={{ background: 'var(--input-bg)', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', padding: '10px 14px', borderRadius: '6px', outline: 'none' }}
                 >
                   <option value="left">Left</option>
                   <option value="center">Center</option>
@@ -273,7 +272,6 @@ export default function App() {
                 <select 
                   value={popupFontFamily} 
                   onChange={e => setPopupFontFamily(e.target.value)}
-                  style={{ background: 'var(--input-bg)', border: '1px solid var(--panel-border)', color: 'var(--text-primary)', padding: '10px 14px', borderRadius: '6px', outline: 'none' }}
                 >
                   <option value="Microsoft YaHei, sans-serif">Microsoft YaHei (Default Arc)</option>
                   <option value="Inter, system-ui, sans-serif">Inter (Modern Sans)</option>
