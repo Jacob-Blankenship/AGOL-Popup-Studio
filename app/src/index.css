@@ -1,0 +1,163 @@
+:root {
+  --bg-color: #0b0f19;
+  --panel-bg: rgba(20, 25, 40, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #0284c7;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(15, 23, 42, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(12, 74, 110, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--panel-border);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Inputs */
+input[type="text"], input[type="password"] {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--panel-border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: var(--accent);
+}
+
+/* Color input */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Live Preview Map Background */
+.preview-map-bg {
+  background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0,10 L20,10 M10,0 L10,20" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></svg>');
+  background-color: #050811;
+  position: relative;
+  overflow: hidden;
+}
+
+/* App Layout Grid */
+.app-container {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
