@@ -8,7 +8,8 @@ export function generatePythonScript(state) {
   const urlButtonTextsDictStr = JSON.stringify(urlButtonTexts || {});
 
   return `
-# Custom AGOL Popup Designer Script
+# Custom AGOL Popup Studio Script
+import getpass
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayer
 import json, re, html
@@ -17,7 +18,7 @@ from copy import deepcopy
 # ===== CONFIG =====
 PORTAL_URL = "${portalConfig.portalUrl}"
 USERNAME   = "${portalConfig.username}"
-PASSWORD   = "${portalConfig.password}"
+PASSWORD   = getpass.getpass('Enter AGOL Password: ')
 WEBMAP_ID  = "${portalConfig.webmapId}"
 
 # ===== COLOR PALETTE =====
@@ -181,7 +182,7 @@ def _build_text_html(title_tpl: str, fields: list, date_exprs: dict, url_exprs: 
         right_td = f"<td style=\\"padding:6px 8px;background:{COLORS['row_value_bg']};border-bottom:1px solid {COLORS['table_border']};color:{COLORS['row_value_text']};\\">{right_val}</td>"
         rows.append(f"<tr>{left_td}{right_td}</tr>")
 
-    return "<!-- AGOL_POPUP_DESIGNER -->" + header + table_start + "".join(rows) + "</tbody></table>"
+    return "<!-- AGOL_POPUP_STUDIO -->" + header + table_start + "".join(rows) + "</tbody></table>"
 
 def main():
     print("Logging on...")
@@ -227,7 +228,7 @@ def main():
                     if not replaced:
                         new_elements.append(my_element)
                         replaced = True
-                elif etype == "text" and "<!-- AGOL_POPUP_DESIGNER -->" in el.get("text", ""):
+                elif etype == "text" and "<!-- AGOL_POPUP_STUDIO -->" in el.get("text", ""):
                     if not replaced:
                         new_elements.append(my_element)
                         replaced = True

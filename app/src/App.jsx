@@ -57,10 +57,9 @@ export default function App() {
   const [targetLayerTitle, setTargetLayerTitle] = useState('');
   
   const [portalConfig, setPortalConfig] = useState({
-    portalUrl: 'https://soa-dnr.maps.arcgis.com/',
-    username: 'Dewberry_temp',
-    password: 'Password_here',
-    webmapId: 'd8435a9e295b44fe81f4d6a8f6e45ff8'
+    portalUrl: '',
+    username: '',
+    webmapId: ''
   });
 
   const [schemaUrl, setSchemaUrl] = useState('');
@@ -138,7 +137,7 @@ export default function App() {
         
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
           <h1 style={{ margin: 0, fontSize: '1.5rem', background: 'linear-gradient(to right, var(--accent), #e0f2fe)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            AGOL Popup Designer
+            AGOL Popup Studio
           </h1>
         </div>
 
@@ -171,34 +170,35 @@ export default function App() {
         </div>
 
         <div className="glass-panel" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>Portal Config</h3>
+          <h3 style={{ margin: '0 0 16px 0', fontSize: '1.2rem' }}>AGOL Config</h3>
           <div style={{ display: 'grid', gap: '12px' }}>
-            <input 
-              type="text" 
-              placeholder="Portal URL" 
-              value={portalConfig.portalUrl} 
-              onChange={e => setPortalConfig({...portalConfig, portalUrl: e.target.value})} 
-            />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gap: '4px' }}>
+              <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>AGOL URL</label>
               <input 
                 type="text" 
-                placeholder="Username" 
+                placeholder="https://your-agol.maps.arcgis.com/" 
+                value={portalConfig.portalUrl} 
+                onChange={e => setPortalConfig({...portalConfig, portalUrl: e.target.value})} 
+              />
+            </div>
+            <div style={{ display: 'grid', gap: '4px' }}>
+              <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Username</label>
+              <input 
+                type="text" 
+                placeholder="Enter Username" 
                 value={portalConfig.username} 
                 onChange={e => setPortalConfig({...portalConfig, username: e.target.value})} 
               />
+            </div>
+            <div style={{ display: 'grid', gap: '4px' }}>
+              <label style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Web Map Item ID</label>
               <input 
-                type="password" 
-                placeholder="Password" 
-                value={portalConfig.password} 
-                onChange={e => setPortalConfig({...portalConfig, password: e.target.value})} 
+                type="text" 
+                placeholder="Enter 32-character Web Map ID" 
+                value={portalConfig.webmapId} 
+                onChange={e => setPortalConfig({...portalConfig, webmapId: e.target.value})} 
               />
             </div>
-            <input 
-              type="text" 
-              placeholder="Web Map ID" 
-              value={portalConfig.webmapId} 
-              onChange={e => setPortalConfig({...portalConfig, webmapId: e.target.value})} 
-            />
           </div>
         </div>
 

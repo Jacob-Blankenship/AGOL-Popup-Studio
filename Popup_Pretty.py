@@ -8,10 +8,10 @@ import json, re, html
 from copy import deepcopy
 
 # ===== CONFIG =====
-PORTAL_URL = ""
-USERNAME   = ""
-PASSWORD   = ""
-WEBMAP_ID  = ""
+PORTAL_URL = "--------"
+USERNAME   = "--------"
+PASSWORD   = "--------"
+WEBMAP_ID  = "--------"
 
 # ===== COLOR PALETTE =====
 dark_blue  = "#0A4757"
