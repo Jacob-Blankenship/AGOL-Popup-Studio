@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ColorPicker from './components/ColorPicker';
 import FieldConfigurator from './components/FieldConfigurator';
 import LivePreview from './components/LivePreview';
 import { generatePythonScript } from './utils/scriptGenerator';
-import { Code, Download, Database } from 'lucide-react';
+import { Code, Download, Database, Moon, Sun } from 'lucide-react';
 
 const DEFAULT_COLORS = {
-  header_bg: '#0f172a',
+  header_bg: '#0A4757',
   header_text: '#ffffff',
-  header_border: '#334155',
-  row_label_bg: '#f8fafc',
-  row_label_text: '#475569',
-  row_value_bg: '#ffffff',
-  row_value_text: '#0f172a',
-  table_border: '#e2e8f0',
-  table_outline: '#cbd5e1',
-  button_bg: '#0284c7',
+  header_border: '#ffffff',
+  row_label_bg: '#00303C',
+  row_label_text: '#ffffff',
+  row_value_bg: '#0A4757',
+  row_value_text: '#ffffff',
+  table_border: '#ffffff',
+  table_outline: '#ffffff',
+  button_bg: '#00303C',
   button_text: '#ffffff',
-  button_radius: '4px',
-  button_shadow: '0 1px 2px rgba(0,0,0,0.05)'
+  button_radius: '6px',
+  button_shadow: '0 2px 4px rgba(0,0,0,0.15)'
 };
 
 const DEFAULT_ORDER = [
@@ -44,6 +44,12 @@ const SYSTEM_FIELDS_TO_HIDE = [
 ];
 
 export default function App() {
+  const [theme, setTheme] = useState('dark');
+  
+  useEffect(() => {
+    document.body.className = theme === 'light' ? 'light' : '';
+  }, [theme]);
+
   const [colors, setColors] = useState(DEFAULT_COLORS);
   const [fieldOrder, setFieldOrder] = useState(DEFAULT_ORDER);
   const [fieldAliases, setFieldAliases] = useState({});
@@ -144,6 +150,13 @@ export default function App() {
           <h1 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: 700, letterSpacing: '-0.02em' }}>
             AGOL Popup Studio
           </h1>
+          <button 
+            className="btn-icon" 
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            title="Toggle Light/Dark Theme"
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
 
         {/* Mode Selector */}
