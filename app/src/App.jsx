@@ -75,22 +75,27 @@ export default function App() {
       const res = await fetch(url.toString());
       const data = await res.json();
       
-      let fields = [];
+      let fieldsData = [];
       if (data.fields) {
-         fields = data.fields.map(f => f.name);
+         fieldsData = data.fields;
       } else if (data.layers && data.layers[0] && data.layers[0].fields) {
-         fields = data.layers[0].fields.map(f => f.name);
+         fieldsData = data.layers[0].fields;
       }
       
-      if (fields.length > 0) {
+      if (fieldsData.length > 0) {
         // Completely replace the existing list
-        const newFields = fields.map(f => f.toLowerCase());
+        const newFields = fieldsData.map(f => f.name.toLowerCase());
         setFieldOrder(newFields);
         
-        // Setup initial aliases by replacing underscores with spaces and title casing
+        // Setup initial aliases
         const newAliases = {};
-        newFields.forEach(f => {
-          newAliases[f] = f.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        fieldsData.forEach(f => {
+          const lowerName = f.name.toLowerCase();
+          if (f.alias && f.alias !== f.name && f.alias !== '') {
+            newAliases[lowerName] = f.alias;
+          } else {
+            newAliases[lowerName] = lowerName.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          }
         });
         setFieldAliases(newAliases);
         
@@ -98,7 +103,7 @@ export default function App() {
         const systemFieldsToHide = newFields.filter(f => SYSTEM_FIELDS_TO_HIDE.includes(f));
         setHideFields(systemFieldsToHide);
         
-        alert(`Successfully imported ${fields.length} fields!`);
+        alert(`Successfully imported ${fieldsData.length} fields!`);
         setSchemaUrl('');
       } else {
         alert('No fields found at this URL. Make sure it points to a layer or service endpoint.');
