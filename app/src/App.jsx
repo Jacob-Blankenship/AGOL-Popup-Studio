@@ -3,6 +3,7 @@ import ColorPicker from './components/ColorPicker';
 import FieldConfigurator from './components/FieldConfigurator';
 import LivePreview from './components/LivePreview';
 import HtmlImporter from './components/HtmlImporter';
+import HelpModal from './components/HelpModal';
 import { generatePythonScript } from './utils/scriptGenerator';
 import { Code, Download, Database, Moon, Sun } from 'lucide-react';
 
@@ -173,13 +174,16 @@ export default function App() {
           <h1 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: 700, letterSpacing: '-0.02em' }}>
             AGOL Popup Studio
           </h1>
-          <button 
-            className="btn-icon" 
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title="Toggle Light/Dark Theme"
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <HelpModal />
+            <button 
+              className="btn-icon" 
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              title="Toggle Light/Dark Theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mode Selector */}
